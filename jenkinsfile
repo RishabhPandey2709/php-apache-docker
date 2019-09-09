@@ -1,17 +1,12 @@
-node("docker") {
-    docker.withRegistry('<<imrishabh27>>', '<<docker-hub>>') {
-    
-        git url: "<<https://github.com/rishank69/php-apache-docker>>", credentialsId: '<<c1e126e1-b89b-49c2-89b5-fd9e230bf4e9>>'
-    
-        sh "git rev-parse HEAD > .git/commit-id"
-        def commit_id = readFile('.git/commit-id').trim()
-        println commit_id
-    
-        stage "build"
-        def app = docker.build "php-apache-sample"
-    
-        stage "publish"
-        app.push 'master'
-        app.push "${commit_id}"
-    }
+node {
+  stage 'Checkout'
+  git 'http://https://github.com/rishank69/php-apache-docker' credentialsId 'github-id'
+ 
+  stage 'Docker build'
+  docker.build('demo')
+ 
+  stage 'Docker push'
+  docker.withRegistry('https://cloud.docker.com/repository/registry-1.docker.io/imrishabh27/demo', 'docker-hub') {
+    docker.image('demo').push('latest')
+  }
 }
