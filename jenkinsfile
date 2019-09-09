@@ -1,6 +1,6 @@
 node {
   stage 'Checkout'
-  git 'http://https://github.com/rishank69/php-apache-docker' credentialsId 'github-id'
+  git 'ssh://github.com/rishank69/php-apache-docker' 
  
   stage 'Docker build'
   docker.build('demo')
