@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: trigger single Job
-      uses: appleboy/jenkins-action@master
+      uses: imrishabh27/jenkins-action@master
       with:
         url: "http://localhost:5656"
         user: "Rishabh Pandey"
