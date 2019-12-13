@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: trigger single Job
-      uses: imrishabh27/jenkins-action@master
+      uses: imrishabh27/php-apache-docker@master
       with:
         url: "http://localhost:5656"
         user: "Rishabh Pandey"
