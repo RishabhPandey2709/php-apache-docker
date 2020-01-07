@@ -1,15 +1,15 @@
 pipeline {
   environment {
-    registry = "imrishabh27/demo"
-    registryCredential = 'docker-hub'
-    dockerImage = 'demo'
+    registry = "imrishabh27/ci_images"
+    registryCredential = 'dockerhub'
+    dockerImage = 'ci_images'
   }
   agent any
   
   stages {
     stage('Cloning Git') {
       steps {
-        git 'http://github.com/rishank69/php-apache-docker'
+        git 'https://github.com/rishank69/php-apache-docker.git'
       }
     }
     
@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
          script {
-            docker.withRegistry( 'https://registry.hub.docker.com/imrishabh27/demo', registryCredential ) {
+            docker.withRegistry( 'https://registry.hub.docker.com/imrishabh27/ci_images', registryCredential ) {
             dockerImage.push()
           }
         }
