@@ -56,6 +56,10 @@ COPY docker-utils/php/pool.d/www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 # Apache configurations
 COPY docker-utils/apache2/app.conf /etc/apache2/sites-enabled/000-default.conf
+
+#RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
+#    ln -sf /proc/self/fd/1 /var/log/apache2/error.log
+
 # Disable Xdebug
 RUN phpdismod xdebug
 
